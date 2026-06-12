@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Pratala Rerupa Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#000000",
+        surface: "#f9f9f9",
+        "surface-white": "#ffffff",
+        "border-soft": "#e5e5e5",
+        "text-muted": "#666666",
+        "art-cobalt": "#0047AB",
+        "art-red": "#FF2400",
+        "art-lime": "#32CD32",
+        error: "#ba1a1a"
+      },
+      fontFamily: {
+        body: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"]
+      },
+      boxShadow: {
+        ambient: "0 4px 24px rgba(0,0,0,0.04)"
+      }
+    }
+  }
+};
+</script>
+</head>
+<body class="bg-surface text-primary font-body antialiased">
+<main class="mx-auto max-w-7xl px-5 py-8 md:px-10">
+  <header class="mb-8 flex flex-col gap-5 border-b border-border-soft pb-6 md:flex-row md:items-center md:justify-between">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-widest text-text-muted">Lead Management</p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight md:text-5xl">Pratala Rerupa Admin</h1>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a class="rounded-lg border border-border-soft bg-surface-white px-4 py-3 text-sm transition hover:bg-white" href="./code.html">Open Site</a>
+      <button class="hidden rounded-lg bg-primary px-4 py-3 text-sm text-white transition hover:bg-art-cobalt" id="logout-button" type="button">Logout</button>
+    </div>
+  </header>
+
+  <section class="rounded-2xl border border-border-soft bg-surface-white p-6 shadow-ambient" id="login-panel">
+    <p class="font-mono text-xs uppercase tracking-widest text-text-muted">Admin Login</p>
+    <h2 class="mt-2 text-2xl font-semibold">Sign in with Supabase Auth</h2>
+    <p class="mt-4 hidden rounded-lg border border-error/20 bg-red-50 p-3 text-sm text-error" id="file-warning">Admin panel must be opened from a deployed website URL, not directly from a file.</p>
+    <p class="mt-4 hidden rounded-lg border border-error/20 bg-red-50 p-3 text-sm text-error" id="setup-error"></p>
+    <form class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-[1fr_1fr_auto]" id="login-form">
+      <label>
+        <span class="font-mono text-xs uppercase tracking-widest text-text-muted">Email</span>
+        <input class="mt-2 w-full rounded-lg border-border-soft" name="email" type="email" required autocomplete="email" />
+      </label>
+      <label>
+        <span class="font-mono text-xs uppercase tracking-widest text-text-muted">Password</span>
+        <input class="mt-2 w-full rounded-lg border-border-soft" name="password" type="password" required autocomplete="current-password" />
+      </label>
+      <button class="self-end rounded-lg bg-primary px-6 py-3 text-white transition hover:bg-art-cobalt disabled:opacity-60" id="login-button" type="submit">Login</button>
+    </form>
+    <p class="mt-4 hidden text-sm text-text-muted" id="login-status">Logging in...</p>
+    <p class="mt-4 hidden rounded-lg border border-error/20 bg-red-50 p-3 text-sm text-error" id="login-error"></p>
+  </section>
+
+  <section class="hidden space-y-6" id="admin-panel">
+    <div class="grid grid-cols-1 gap-4 rounded-2xl border border-border-soft bg-surface-white p-5 shadow-ambient md:grid-cols-[1fr_220px_auto]">
+      <label>
+        <span class="font-mono text-xs uppercase tracking-widest text-text-muted">Search</span>
+        <input class="mt-2 w-full rounded-lg border-border-soft" id="lead-search" placeholder="Name, business, WhatsApp, type, concept" />
+      </label>
+      <label>
+        <span class="font-mono text-xs uppercase tracking-widest text-text-muted">Status</span>
+        <select class="mt-2 w-full rounded-lg border-border-soft" id="status-filter">
+          <option value="all">All</option>
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="interested">Interested</option>
+          <option value="deal">Deal</option>
+          <option value="rejected">Rejected</option>
+          <option value="archived">Archived</option>
+        </select>
+      </label>
+      <button class="self-end rounded-lg border border-border-soft bg-surface-white px-5 py-3 transition hover:bg-surface" id="export-csv" type="button">Export CSV</button>
+    </div>
+
+    <p class="hidden rounded-lg border border-error/20 bg-red-50 p-3 text-sm text-error" id="admin-error"></p>
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_420px]">
+      <section class="overflow-hidden rounded-2xl border border-border-soft bg-surface-white shadow-ambient">
+        <div class="border-b border-border-soft p-5">
+          <p class="font-mono text-xs uppercase tracking-widest text-text-muted">Incoming Leads</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[900px] text-left text-sm">
+            <thead class="bg-surface font-mono text-xs uppercase tracking-widest text-text-muted">
+              <tr>
+                <th class="px-4 py-3">Date</th>
+                <th class="px-4 py-3">Name</th>
+                <th class="px-4 py-3">Business</th>
+                <th class="px-4 py-3">Type</th>
+                <th class="px-4 py-3">WhatsApp</th>
+                <th class="px-4 py-3">Preferred Concept</th>
+                <th class="px-4 py-3">Status</th>
+                <th class="px-4 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-soft" id="lead-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="rounded-2xl border border-border-soft bg-surface-white p-5 shadow-ambient" id="lead-detail">
+        <p class="font-mono text-xs uppercase tracking-widest text-text-muted">Lead Detail</p>
+        <p class="mt-4 text-text-muted">Select a lead to review details, update status, or add internal notes.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+<script src="./assets/js/supabase-config.js?v=2"></script>
+<script src="./assets/js/supabase-client.js?v=3"></script>
+<script src="./assets/js/admin.js?v=4"></script>
+</body>
+</html>

@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Pratala Rerupa membuat landing page premium untuk bisnis lokal agar terlihat lebih dipercaya, rapi, responsif, dan siap diarahkan ke WhatsApp." name="description"/>
+<title>Pratala Rerupa - Website Premium untuk Bisnis Lokal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#111111",
+        ink: "#111111",
+        paper: "#f7f4ef",
+        "paper-soft": "#ebe5da",
+        "surface-white": "#ffffff",
+        "surface": "#f9f9f9",
+        "surface-container": "#eeeeee",
+        "border-soft": "#dfd8cd",
+        "text-muted": "#625f59",
+        "art-cobalt": "#1746a2",
+        "art-red": "#c4432f",
+        "art-lime": "#b6e25b",
+        error: "#ba1a1a",
+        "error-container": "#ffdad6",
+        "on-primary": "#ffffff"
+      },
+      fontFamily: {
+        body: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"]
+      }
+    }
+  }
+};
+</script>
+<style>
+:root {
+  --nav-y: 0;
+  --rerupa-progress: 0.66;
+  --page-progress: 0;
+  --hero-x: 0px;
+  --hero-y: 0px;
+  --motion-ease: cubic-bezier(.16, 1, .3, 1);
+  --motion-spring: cubic-bezier(.2, 1.15, .25, 1);
+  --shadow-soft: 0 18px 60px rgba(17, 17, 17, 0.08);
+  --shadow-strong: 0 28px 90px rgba(17, 17, 17, 0.16);
+}
+* { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  overflow-x: hidden;
+}
+body {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(17,17,17,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17,17,17,0.035) 1px, transparent 1px),
+    #f7f4ef;
+  background-size: 54px 54px, 54px 54px, auto;
+  color: #111111;
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 72% 8%, rgba(182,226,91,0.22), transparent 28%),
+              radial-gradient(circle at 12% 38%, rgba(23,70,162,0.12), transparent 25%);
+  transform: translate3d(calc(var(--hero-x) * -0.08), calc(var(--page-progress) * -80px), 0);
+  z-index: 0;
+}
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 80;
+  height: 3px;
+  transform: scaleX(var(--page-progress));
+  transform-origin: left center;
+  background: linear-gradient(90deg, #111111, #1746a2 65%, #b6e25b);
+  box-shadow: 0 0 24px rgba(23,70,162,.28);
+  pointer-events: none;
+}
+main, footer, nav { position: relative; z-index: 1; }
+a, button {
+  -webkit-tap-highlight-color: transparent;
+  transition: color .24s ease, background-color .24s ease, border-color .24s ease, transform .24s ease, box-shadow .24s ease, opacity .24s ease;
+}
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(23,70,162,0.28);
+  outline-offset: 3px;
+}
+img { display: block; max-width: 100%; }
+.page-shell {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding-left: clamp(20px, 4vw, 64px);
+  padding-right: clamp(20px, 4vw, 64px);
+}
+.section-space { padding-top: clamp(86px, 11vw, 144px); padding-bottom: clamp(86px, 11vw, 144px); }
+.label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #625f59;
+}
+.display {
+  font-size: clamp(44px, 8vw, 104px);
+  line-height: .94;
+  font-weight: 700;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+.headline {
+  font-size: clamp(32px, 4.8vw, 64px);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.subhead {
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.55;
+  color: #625f59;
+}
+.glass-panel {
+  background: rgba(247,244,239,.84);
+  border-bottom: 1px solid rgba(17,17,17,.08);
+  backdrop-filter: blur(18px);
+  transition: transform .38s var(--motion-ease), background-color .32s ease, box-shadow .32s ease, border-color .32s ease;
+}
+.nav-compact {
+  background: rgba(247,244,239,.92);
+  box-shadow: 0 18px 60px rgba(17,17,17,.07);
+}
+.nav-compact .nav-inner {
+  transform: translateY(0) scale(.985);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.nav-inner { transition: transform .28s ease, padding .28s ease; }
+nav a { color: inherit; text-decoration: none; }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.nav-brand {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-nav { isolation: isolate; padding: 4px; }
+.site-nav-indicator {
+  position: absolute;
+  left: var(--nav-indicator-left, 0);
+  top: var(--nav-indicator-top, 0);
+  width: var(--nav-indicator-width, 0);
+  height: var(--nav-indicator-height, 0);
+  border-radius: 999px;
+  background: #111111;
+  opacity: var(--nav-indicator-opacity, 0);
+  transition: left .46s var(--motion-spring), width .46s var(--motion-spring), top .46s var(--motion-spring), height .46s var(--motion-spring), opacity .2s ease;
+  z-index: -1;
+}
+.site-nav-link {
+  position: relative;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 14px;
+  color: #625f59;
+  font-size: 14px;
+  font-weight: 600;
+}
+.site-nav-link:hover { color: #111111; }
+.site-nav-link.is-active { color: #ffffff; }
+.mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: max-height .32s ease, opacity .24s ease, transform .24s ease;
+}
+.mobile-menu.open {
+  max-height: 430px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.mobile-menu-link {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .32s var(--motion-ease), transform .32s var(--motion-ease), background-color .24s ease;
+}
+.mobile-menu.open .mobile-menu-link,
+.mobile-menu.open [data-open-request-modal] {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-menu.open .mobile-menu-link:nth-child(2) { transition-delay: 35ms; }
+.mobile-menu.open .mobile-menu-link:nth-child(3) { transition-delay: 70ms; }
+.mobile-menu.open .mobile-menu-link:nth-child(4) { transition-delay: 105ms; }
+.mobile-menu.open .mobile-menu-link:nth-child(5) { transition-delay: 140ms; }
+.mobile-menu.open .mobile-menu-link:nth-child(6) { transition-delay: 175ms; }
+.mobile-menu.open .mobile-menu-link:nth-child(7) { transition-delay: 210ms; }
+.mobile-menu.open .mobile-menu-link:nth-child(8) { transition-delay: 245ms; }
+#mobile-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dfd8cd;
+  border-radius: 10px;
+  background: #ffffff;
+}
+#mobile-menu-toggle::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  border-radius: 99px;
+  background: #111111;
+  box-shadow: 0 -7px 0 #111111, 0 7px 0 #111111;
+}
+.btn-primary, .btn-secondary, .btn-dark, .btn-light {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 13px 20px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(var(--magnet-x, 0px), var(--magnet-y, 0px), 0);
+  will-change: transform;
+}
+.btn-primary::after,
+.btn-secondary::after,
+.btn-dark::after,
+.btn-light::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255,255,255,.36), transparent 36%);
+  transition: opacity .24s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+.btn-dark:hover::after,
+.btn-light:hover::after { opacity: 1; }
+.btn-primary:active,
+.btn-secondary:active,
+.btn-dark:active,
+.btn-light:active { transform: translate3d(var(--magnet-x, 0px), calc(var(--magnet-y, 0px) + 1px), 0) scale(.985); }
+}
+.btn-primary { background: #111111; color: #ffffff; box-shadow: var(--shadow-soft); }
+.btn-primary:hover { background: #1746a2; transform: translateY(-2px); box-shadow: var(--shadow-strong); }
+.btn-secondary { background: rgba(255,255,255,.48); color: #111111; border: 1px solid #cfc7bb; }
+.btn-secondary:hover { background: #ffffff; transform: translateY(-2px); }
+.btn-dark { background: #b6e25b; color: #111111; }
+.btn-dark:hover { background: #ffffff; transform: translateY(-2px); }
+.btn-light { color: #ffffff; border: 1px solid rgba(255,255,255,.38); }
+.btn-light:hover { background: rgba(255,255,255,.12); transform: translateY(-2px); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(360px, .72fr);
+  gap: clamp(36px, 7vw, 86px);
+  align-items: center;
+}
+.hero-grid > * { min-width: 0; }
+.headline-line {
+  display: block;
+  transform: translateY(110%) rotate(1.4deg);
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+}
+body.is-loaded .headline-line {
+  animation: headlineReveal .9s var(--motion-spring) forwards;
+}
+body.is-loaded .headline-line:nth-child(2) { animation-delay: .12s; }
+body.is-loaded .headline-line:nth-child(3) { animation-delay: .24s; }
+#home .label,
+#home .subhead,
+#home .btn-primary,
+#home .btn-secondary,
+#home .proof-chip,
+#home .demo-device {
+  opacity: 0;
+}
+body.is-loaded #home .label { animation: heroFade .38s ease forwards .02s; }
+body.is-loaded #home .subhead { animation: heroSlide .48s var(--motion-ease) forwards .2s; }
+body.is-loaded #home .btn-primary,
+body.is-loaded #home .btn-secondary { animation: heroSlide .46s var(--motion-ease) forwards .28s; }
+body.is-loaded #home .btn-secondary:nth-child(2) { animation-delay: .34s; }
+body.is-loaded #home .btn-secondary:nth-child(3) { animation-delay: .4s; }
+body.is-loaded #home .proof-chip { animation: proofPop .46s var(--motion-spring) forwards .46s; }
+body.is-loaded #home .proof-chip:nth-child(2) { animation-delay: .52s; }
+body.is-loaded #home .proof-chip:nth-child(3) { animation-delay: .58s; }
+body.is-loaded #home .demo-device { animation: deviceReveal .72s var(--motion-spring) forwards .18s; }
+.hero-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.proof-chip {
+  min-height: 86px;
+  border: 1px solid #dfd8cd;
+  background: rgba(255,255,255,.62);
+  padding: 16px;
+  border-radius: 10px;
+  transform: translateY(18px) scale(.98);
+  transition: transform .32s var(--motion-ease), box-shadow .32s ease, border-color .32s ease;
+}
+.proof-chip:hover {
+  transform: translateY(-5px);
+  border-color: rgba(17,17,17,.22);
+  box-shadow: 0 20px 44px rgba(17,17,17,.08);
+}
+.demo-device {
+  position: relative;
+  border: 1px solid rgba(17,17,17,.14);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: var(--shadow-strong);
+  overflow: hidden;
+  transform: perspective(1000px) translate3d(var(--hero-x), var(--hero-y), 0) rotateX(4deg) rotateY(-5deg);
+  transition: transform .18s ease-out, box-shadow .36s ease;
+  will-change: transform;
+}
+.demo-device::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22), transparent 58%);
+  transform: translateX(-40%) rotate(6deg);
+  animation: mockupSheen 5.4s ease-in-out infinite 1.4s;
+  pointer-events: none;
+}
+.demo-device::before {
+  content: "";
+  display: block;
+  height: 42px;
+  border-bottom: 1px solid #e9e2d8;
+  background:
+    radial-gradient(circle, #c4432f 0 4px, transparent 5px) 18px 17px / 18px 10px no-repeat,
+    radial-gradient(circle, #e5c64f 0 4px, transparent 5px) 36px 17px / 18px 10px no-repeat,
+    radial-gradient(circle, #7eb954 0 4px, transparent 5px) 54px 17px / 18px 10px no-repeat,
+    #fbfaf8;
+}
+.demo-stage {
+  position: relative;
+  min-height: 520px;
+  overflow: hidden;
+}
+.messy-board, .clean-page {
+  position: absolute;
+  inset: 0;
+  padding: 26px;
+  transition: opacity .55s ease, transform .55s var(--motion-ease), filter .55s ease, clip-path .55s var(--motion-ease);
+}
+.messy-board {
+  opacity: calc(1 - var(--rerupa-progress));
+  transform: translateX(calc(var(--rerupa-progress) * -58px)) rotate(calc(var(--rerupa-progress) * -4deg)) scale(calc(1 - var(--rerupa-progress) * .04));
+  filter: blur(calc(var(--rerupa-progress) * 5px));
+}
+.clean-page {
+  opacity: var(--rerupa-progress);
+  clip-path: inset(calc((1 - var(--rerupa-progress)) * 30%) calc((1 - var(--rerupa-progress)) * 14%) calc((1 - var(--rerupa-progress)) * 12%) 0 round 18px);
+  transform: translateX(calc((1 - var(--rerupa-progress)) * 48px)) scale(calc(.965 + var(--rerupa-progress) * .035));
+}
+.note {
+  border: 1px solid #dfd8cd;
+  background: #fffaf0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 10px 24px rgba(17,17,17,.05);
+  transition: transform .45s var(--motion-ease), opacity .45s ease;
+}
+.note:nth-child(2) { transform: translateY(calc(var(--rerupa-progress) * -18px)) rotate(calc(-1.2deg - var(--rerupa-progress) * 5deg)); margin-left: 26px; }
+.note:nth-child(3) { transform: translateX(calc(var(--rerupa-progress) * -12px)) rotate(calc(1deg + var(--rerupa-progress) * 4deg)); margin-right: 18px; }
+.note:nth-child(4) { transform: translateY(calc(var(--rerupa-progress) * 20px)) rotate(calc(-.6deg - var(--rerupa-progress) * 3deg)); }
+.clean-hero {
+  min-height: 210px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #111111 0%, #1f1f1f 58%, #1746a2 100%);
+  color: #ffffff;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.clean-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.16), transparent 45%);
+  transform: translateX(calc(-130% + var(--rerupa-progress) * 210%));
+  pointer-events: none;
+}
+.clean-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+.clean-card {
+  min-height: 96px;
+  border: 1px solid #e5ded2;
+  border-radius: 12px;
+  padding: 14px;
+  background: #fbfaf8;
+  transform: translateY(calc((1 - var(--rerupa-progress)) * 18px));
+  opacity: calc(.28 + var(--rerupa-progress) * .72);
+  transition: transform .45s var(--motion-ease), opacity .45s ease, box-shadow .32s ease;
+}
+.preview-card {
+  border: 1px solid #ded6ca;
+  background: rgba(255,255,255,.72);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transform-style: preserve-3d;
+  position: relative;
+  isolation: isolate;
+  clip-path: inset(16% 0 0 0 round 18px);
+  transition: transform .46s var(--motion-ease), box-shadow .46s ease, clip-path .7s var(--motion-ease), border-color .3s ease;
+}
+.preview-card.active { clip-path: inset(0 0 0 0 round 18px); }
+.preview-card::before,
+.concept-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(182,226,91,.32), transparent 32%),
+              radial-gradient(circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(23,70,162,.16), transparent 48%);
+  transition: opacity .28s ease;
+  pointer-events: none;
+}
+.preview-card:hover {
+  transform: translateY(-10px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  box-shadow: var(--shadow-strong);
+  border-color: rgba(17,17,17,.22);
+}
+.preview-card:hover::before,
+.concept-card:hover::before { opacity: 1; }
+.browser-bar {
+  height: 38px;
+  border-bottom: 1px solid #e8dfd3;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  background: #fbfaf8;
+}
+.browser-dot { width: 8px; height: 8px; border-radius: 50%; background: #cfc7bb; }
+.preview-frame { aspect-ratio: 16 / 10.2; overflow: hidden; background: #eee8dd; }
+.preview-frame img { width: 100%; height: 112%; object-fit: cover; object-position: top center; transition: transform 1.1s var(--motion-ease), filter .4s ease; }
+.preview-card:hover .preview-frame img { transform: translateY(-8%) scale(1.045); }
+.split-band {
+  border-top: 1px solid #d9d0c4;
+  border-bottom: 1px solid #d9d0c4;
+  background: rgba(255,255,255,.34);
+}
+.transform-shell {
+  border: 1px solid #d9d0c4;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255,255,255,.72);
+  box-shadow: var(--shadow-soft);
+  --transform-glow-x: calc(12% + var(--rerupa-progress) * 68%);
+  background:
+    radial-gradient(circle at var(--transform-glow-x) 12%, rgba(182,226,91,.28), transparent 28%),
+    rgba(255,255,255,.72);
+}
+.transform-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: #e7dfd2;
+}
+.transform-progress::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: calc(var(--rerupa-progress) * 100%);
+  background: #111111;
+  transition: width .18s linear;
+}
+.stage-button[aria-pressed="true"] {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+  transform: translateX(6px) scale(1.01);
+  box-shadow: 0 16px 34px rgba(17,17,17,.14);
+}
+.workshop-tab {
+  min-height: 50px;
+  border: 1px solid #dfd8cd;
+  border-radius: 10px;
+  background: rgba(255,255,255,.62);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: #625f59;
+  transition: transform .28s var(--motion-spring), color .24s ease, background-color .24s ease, box-shadow .28s ease, border-color .24s ease;
+}
+.workshop-tab.active { background: #111111; color: #ffffff; border-color: #111111; transform: translateX(8px); box-shadow: 0 16px 36px rgba(17,17,17,.13); }
+.workshop-panel { transition: opacity .32s ease, transform .32s var(--motion-ease), filter .32s ease; }
+.workshop-panel.is-switching { opacity: .32; transform: translateY(14px) scale(.985); filter: blur(4px); }
+.workshop-panel.panel-in { animation: panelIn .48s var(--motion-spring) both; }
+.workshop-bullet { opacity: 0; transform: translateX(-14px); animation: bulletIn .36s var(--motion-ease) forwards; }
+.mini-wireframe {
+  min-height: 280px;
+  border: 1px solid #dfd8cd;
+  border-radius: 16px;
+  background: #f7f4ef;
+  padding: 18px;
+  overflow: hidden;
+  position: relative;
+}
+.mini-wireframe::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(17,17,17,.07);
+  transform: translateY(8px);
+  opacity: .55;
+  pointer-events: none;
+}
+.concept-card {
+  border: 1px solid #dfd8cd;
+  background: rgba(255,255,255,.68);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 12px 38px rgba(17,17,17,.05);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .36s var(--motion-ease), box-shadow .36s ease, border-color .28s ease, opacity .32s ease;
+}
+.concept-card.hidden-concept { display: none; }
+.concept-card:hover { transform: translateY(-7px); box-shadow: 0 24px 64px rgba(17,17,17,.1); border-color: rgba(17,17,17,.2); }
+.concept-card.hidden-concept.visible { display: block; animation: conceptEnter .5s var(--motion-spring) both; }
+.concept-card.hidden-concept.hiding { display: block; animation: conceptExit .28s ease forwards; }
+.concept-card h3::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin-top: 14px;
+  background: #111111;
+  transform: scaleX(.42);
+  transform-origin: left;
+  transition: transform .3s var(--motion-ease);
+}
+.concept-card:hover h3::after { transform: scaleX(1); }
+.process-steps {
+  position: relative;
+}
+.process-steps::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 2px;
+  background: rgba(17,17,17,.12);
+}
+.process-steps::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -18px;
+  height: 2px;
+  width: calc(var(--process-progress, 0) * 100%);
+  background: linear-gradient(90deg, #111111, #1746a2, #b6e25b);
+  transition: width .18s linear;
+}
+#process .concept-card {
+  transform: translateY(18px);
+  opacity: .46;
+}
+#process .concept-card.is-current {
+  transform: translateY(-8px);
+  opacity: 1;
+  border-color: rgba(17,17,17,.28);
+  box-shadow: var(--shadow-strong);
+}
+#process .concept-card.is-current .label { color: #111111; }
+.faq-item {
+  border-top: 1px solid #d9d0c4;
+}
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .28s ease;
+}
+.faq-answer > div { overflow: hidden; }
+.faq-item.is-open .faq-answer { grid-template-rows: 1fr; }
+.faq-item .material-symbols-outlined { transition: transform .25s var(--motion-ease); }
+.faq-item.is-open .material-symbols-outlined { transform: rotate(180deg); }
+.reveal {
+  opacity: 0;
+  transform: translateY(34px) scale(.985);
+  filter: blur(7px);
+  clip-path: inset(10% 0 0 0);
+  transition: opacity .72s var(--motion-ease), transform .72s var(--motion-ease), filter .72s var(--motion-ease), clip-path .72s var(--motion-ease);
+}
+.reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); clip-path: inset(0 0 0 0); }
+body.section-reveal-ready .section-focus {
+  opacity: .14;
+  transform: translateY(34px) scale(.986);
+  filter: blur(8px);
+  clip-path: inset(8% 0 8% 0);
+  transition: opacity .68s var(--motion-ease), transform .68s var(--motion-ease), filter .68s var(--motion-ease), clip-path .68s var(--motion-ease);
+  will-change: opacity, transform, filter;
+}
+body.section-reveal-ready .section-focus.section-near {
+  opacity: .44;
+  transform: translateY(14px) scale(.994);
+  filter: blur(3px);
+  clip-path: inset(3% 0 3% 0);
+}
+body.section-reveal-ready .section-focus.section-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  clip-path: inset(0 0 0 0);
+}
+#contact > div {
+  position: relative;
+  isolation: isolate;
+}
+#contact > div::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+    radial-gradient(circle at calc(18% + var(--page-progress) * 60%) 20%, rgba(182,226,91,.28), transparent 32%);
+  background-size: 36px 36px, 36px 36px, auto;
+  animation: ctaGrid 12s linear infinite;
+}
+#request-modal {
+  opacity: 0;
+  transition: opacity .24s ease;
+}
+#request-modal.flex { opacity: 1; }
+#request-modal > [data-request-close] {
+  opacity: 0;
+  transition: opacity .28s ease, backdrop-filter .28s ease;
+}
+#request-modal.flex > [data-request-close] { opacity: 1; }
+#request-modal.flex > .relative { animation: modalLift .42s var(--motion-spring) both; }
+#request-modal form > * { animation: modalStagger .42s var(--motion-ease) both; }
+#request-modal form > *:nth-child(2) { animation-delay: 45ms; }
+#request-modal.modal-closing { opacity: 0; pointer-events: none; }
+#request-modal.modal-closing > .relative { animation: modalDrop .2s ease forwards; }
+@keyframes headlineReveal { to { opacity: 1; transform: translateY(0) rotate(0); clip-path: inset(0 0 0 0); } }
+@keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes heroSlide { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes proofPop { from { opacity: 0; transform: translateY(20px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes deviceReveal { from { opacity: 0; transform: perspective(1000px) translate3d(28px, 30px, 0) rotateX(8deg) rotateY(-11deg) scale(.94); filter: blur(10px); } to { opacity: 1; filter: blur(0); } }
+@keyframes mockupSheen { 0%, 46% { transform: translateX(-48%) rotate(6deg); opacity: 0; } 58% { opacity: 1; } 76%, 100% { transform: translateX(48%) rotate(6deg); opacity: 0; } }
+@keyframes panelIn { from { opacity: .45; transform: translateY(12px) scale(.985); filter: blur(4px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes bulletIn { to { opacity: 1; transform: translateX(0); } }
+@keyframes wireHero { from { opacity: 0; transform: translateY(14px) scaleX(.9); transform-origin: left; } to { opacity: 1; transform: translateY(0) scaleX(1); } }
+@keyframes wireBlock { from { opacity: 0; transform: translateY(10px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes conceptEnter { from { opacity: 0; transform: translateY(24px) scale(.97); clip-path: inset(18% 0 0 0 round 14px); } to { opacity: 1; transform: translateY(0) scale(1); clip-path: inset(0 0 0 0 round 14px); } }
+@keyframes conceptExit { to { opacity: 0; transform: translateY(16px) scale(.98); } }
+@keyframes modalLift { from { opacity: 0; transform: translateY(26px) scale(.965); filter: blur(8px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes modalDrop { to { opacity: 0; transform: translateY(14px) scale(.985); filter: blur(4px); } }
+@keyframes modalStagger { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ctaGrid { from { background-position: 0 0, 0 0, 0 0; } to { background-position: 72px 36px, 36px 72px, 0 0; } }
+.hidden { display: none; }
+.block { display: block; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+.inset-0 { inset: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.top-0 { top: 0; }
+.z-10 { z-index: 10; }
+.z-50 { z-index: 50; }
+.z-\[100\] { z-index: 100; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.ml-auto { margin-left: auto; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-5 { margin-top: 20px; }
+.mt-6 { margin-top: 24px; }
+.mt-7 { margin-top: 28px; }
+.mt-8 { margin-top: 32px; }
+.mt-10 { margin-top: 40px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-5 { margin-bottom: 20px; }
+.mb-8 { margin-bottom: 32px; }
+.mb-10 { margin-bottom: 40px; }
+.mb-12 { margin-bottom: 48px; }
+.p-3 { padding: 12px; }
+.p-4 { padding: 16px; }
+.p-5 { padding: 20px; }
+.p-6 { padding: 24px; }
+.p-7 { padding: 28px; }
+.p-8 { padding: 32px; }
+.px-3 { padding-left: 12px; padding-right: 12px; }
+.px-4 { padding-left: 16px; padding-right: 16px; }
+.px-5 { padding-left: 20px; padding-right: 20px; }
+.py-2 { padding-top: 8px; padding-bottom: 8px; }
+.py-4 { padding-top: 16px; padding-bottom: 16px; }
+.py-6 { padding-top: 24px; padding-bottom: 24px; }
+.pt-5 { padding-top: 20px; }
+.pb-2 { padding-bottom: 8px; }
+.pb-6 { padding-bottom: 24px; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-5 { gap: 20px; }
+.gap-6 { gap: 24px; }
+.gap-7 { gap: 28px; }
+.gap-8 { gap: 32px; }
+.gap-10 { gap: 40px; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.shrink-0 { flex-shrink: 0; }
+.w-full { width: 100%; }
+.min-h-\[44px\] { min-height: 44px; }
+.min-h-\[130px\] { min-height: 130px; }
+.max-w-2xl { max-width: 42rem; }
+.max-w-3xl { max-width: 48rem; }
+.max-w-4xl { max-width: 56rem; }
+.max-w-md { max-width: 28rem; }
+.max-w-xl { max-width: 36rem; }
+.max-w-\[92vh\] { max-height: 92vh; }
+.overflow-hidden { overflow: hidden; }
+.overflow-y-auto { overflow-y: auto; }
+.overflow-x-auto { overflow-x: auto; }
+.rounded { border-radius: 4px; }
+.rounded-lg { border-radius: 8px; }
+.rounded-2xl { border-radius: 16px; }
+.rounded-full { border-radius: 999px; }
+.border { border: 1px solid #dfd8cd; }
+.border-t { border-top: 1px solid #dfd8cd; }
+.border-b { border-bottom: 1px solid #dfd8cd; }
+.border-r { border-right: 1px solid #dfd8cd; }
+.border-border-soft { border-color: #dfd8cd; }
+.bg-surface-white { background: #ffffff; }
+.bg-primary { background: #111111; }
+.bg-art-lime { background: #b6e25b; }
+.bg-white\/12 { background: rgba(255,255,255,.12); }
+.bg-primary\/45 { background: rgba(17,17,17,.45); }
+.text-primary { color: #111111; }
+.text-white { color: #ffffff; }
+.text-text-muted { color: #625f59; }
+.text-error { color: #ba1a1a; }
+.text-white\/58 { color: rgba(255,255,255,.58); }
+.text-white\/70 { color: rgba(255,255,255,.70); }
+.text-art-red { color: #c4432f; }
+.text-on-primary { color: #ffffff; }
+.text-sm { font-size: 14px; line-height: 1.5; }
+.text-xl { font-size: 20px; line-height: 1.25; }
+.text-2xl { font-size: 24px; line-height: 1.2; }
+.text-3xl { font-size: 30px; line-height: 1.16; }
+.text-4xl { font-size: 36px; line-height: 1.05; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.leading-6 { line-height: 1.5rem; }
+.leading-8 { line-height: 2rem; }
+.leading-none { line-height: 1; }
+.shadow-lg { box-shadow: var(--shadow-soft); }
+.shadow-2xl { box-shadow: var(--shadow-strong); }
+.backdrop-blur, .backdrop-blur-sm { backdrop-filter: blur(14px); }
+.space-y-5 > * + * { margin-top: 20px; }
+.material-symbols-outlined { display: none !important; }
+main { padding-top: 92px; }
+footer.page-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-top: 1px solid #dfd8cd;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+form input,
+form select,
+form textarea {
+  min-height: 46px;
+  border: 1px solid #dfd8cd;
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #111111;
+  font: inherit;
+}
+form textarea { resize: vertical; }
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .demo-device { transform: none; }
+}
+@media (max-width: 720px) {
+  html { scroll-padding-top: 82px; }
+  .display { font-size: 34px; line-height: 1.08; }
+  #home { overflow: hidden; }
+  #home .display,
+  #home .subhead { max-width: calc(100vw - 56px); }
+  #home .display,
+  #home .subhead { width: min(318px, 100%); max-width: 318px; }
+  #home .btn-primary,
+  #home .btn-secondary { width: min(318px, 100%) !important; max-width: 318px; }
+  .hero-proof, .clean-section { grid-template-columns: 1fr; }
+  .demo-stage { min-height: 430px; }
+  .messy-board, .clean-page { padding: 18px; }
+  .site-nav-link.is-active { color: #111111; background: #f0eadf; }
+  .btn-primary, .btn-secondary, .btn-dark, .btn-light { width: 100%; }
+  .site-nav { display: none; }
+  .nav-actions { display: none; }
+  #mobile-menu-toggle { display: flex; }
+}
+@media (min-width: 640px) {
+  .sm\:flex-row { flex-direction: row; }
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sm\:justify-center { justify-content: center; }
+}
+@media (min-width: 768px) {
+  .md\:flex { display: flex; }
+  .md\:hidden { display: none !important; }
+  .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .md\:grid-cols-\[0\.82fr_1fr\] { grid-template-columns: .82fr 1fr; }
+  .md\:grid-cols-\[0\.86fr_1fr\] { grid-template-columns: .86fr 1fr; }
+  .md\:grid-cols-\[0\.9fr_1fr\] { grid-template-columns: .9fr 1fr; }
+  .md\:grid-cols-\[280px_1fr\] { grid-template-columns: 280px 1fr; }
+  .md\:items-end { align-items: end; }
+  .md\:flex-row { flex-direction: row; }
+  .md\:items-center { align-items: center; }
+  .md\:justify-between { justify-content: space-between; }
+  .md\:p-9 { padding: 36px; }
+  .md\:p-14 { padding: 56px; }
+  .md\:px-8 { padding-left: 32px; padding-right: 32px; }
+  .md\:w-full { width: 100%; }
+  .md\:overflow-visible { overflow: visible; }
+  .md\:pb-0 { padding-bottom: 0; }
+  footer.page-shell { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+@media (min-width: 1024px) {
+  #mobile-menu-toggle { display: none !important; }
+  .site-nav { display: flex !important; }
+  .nav-actions { display: flex !important; }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lg\:grid-cols-\[0\.48fr_0\.52fr\] { grid-template-columns: .48fr .52fr; }
+  .lg\:grid-cols-\[0\.82fr_1fr\] { grid-template-columns: .82fr 1fr; }
+  .lg\:grid-cols-\[0\.86fr_1fr\] { grid-template-columns: .86fr 1fr; }
+  .lg\:grid-cols-\[0\.9fr_0\.7fr\] { grid-template-columns: .9fr .7fr; }
+  .lg\:grid-cols-\[1fr_320px\] { grid-template-columns: 1fr 320px; }
+  .lg\:items-center { align-items: center; }
+  .lg\:items-start { align-items: start; }
+  .lg\:items-end { align-items: end; }
+  .lg\:border-b-0 { border-bottom: 0; }
+  .lg\:border-r { border-right: 1px solid #dfd8cd; }
+  .lg\:grid-cols-1 { grid-template-columns: 1fr; }
+  .lg\:p-20 { padding: 80px; }
+}
+@media (max-width: 1023px) {
+  .site-nav { display: none !important; }
+  .nav-actions { display: none !important; }
+  #mobile-menu-toggle { display: flex !important; }
+  #mobile-menu.md\:hidden { display: block !important; }
+}
+@media (min-width: 1280px) {
+  .xl\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="fixed left-0 right-0 top-0 z-50 glass-panel" id="site-header">
+  <div class="nav-inner page-shell flex items-center justify-between gap-5 py-4">
+    <a class="nav-brand text-primary" href="#home">Pratala Rerupa<span class="text-art-red">.</span></a>
+    <div class="site-nav relative hidden items-center gap-1 md:flex" id="desktop-nav">
+      <span class="site-nav-indicator" aria-hidden="true"></span>
+      <a class="site-nav-link" href="#home" data-nav-link>Home</a>
+      <a class="site-nav-link" href="#preview-works" data-nav-link>Preview</a>
+      <a class="site-nav-link" href="#transformasi" data-nav-link>Rerupa</a>
+      <a class="site-nav-link" href="#workshop" data-nav-link>Workshop</a>
+      <a class="site-nav-link" href="#library" data-nav-link>Library</a>
+      <a class="site-nav-link" href="#about" data-nav-link>About</a>
+      <a class="site-nav-link" href="#process" data-nav-link>Process</a>
+      <a class="site-nav-link" href="#contact" data-nav-link>Contact</a>
+    </div>
+    <div class="nav-actions hidden md:flex">
+      <span class="label text-primary" data-studio-clock>--:-- WIB</span>
+      <a class="btn-primary min-h-[44px] px-5 py-2" href="#contact" data-open-request-modal>Minta Preview</a>
+    </div>
+    <button class="flex h-11 w-11 items-center justify-center rounded-lg border border-border-soft bg-surface-white md:hidden" id="mobile-menu-toggle" aria-label="Buka menu" aria-expanded="false" type="button">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+  <div class="mobile-menu page-shell md:hidden" id="mobile-menu">
+    <div class="mb-4 grid gap-2 rounded-2xl border border-border-soft bg-surface-white p-3 shadow-lg">
+      <a class="site-nav-link mobile-menu-link" href="#home" data-nav-link>Home</a>
+      <a class="site-nav-link mobile-menu-link" href="#preview-works" data-nav-link>Preview</a>
+      <a class="site-nav-link mobile-menu-link" href="#transformasi" data-nav-link>Rerupa</a>
+      <a class="site-nav-link mobile-menu-link" href="#workshop" data-nav-link>Workshop</a>
+      <a class="site-nav-link mobile-menu-link" href="#library" data-nav-link>Library</a>
+      <a class="site-nav-link mobile-menu-link" href="#about" data-nav-link>About</a>
+      <a class="site-nav-link mobile-menu-link" href="#process" data-nav-link>Process</a>
+      <a class="site-nav-link mobile-menu-link" href="#contact" data-nav-link>Contact</a>
+      <button class="btn-primary mt-2" type="button" data-open-request-modal>Minta Preview Website</button>
+    </div>
+  </div>
+</nav>
+
+<main class="pt-[92px]">
+  <section class="page-shell section-space section-focus reveal" id="home">
+    <div class="hero-grid">
+      <div>
+        <p class="label mb-5">Web design service by Adit</p>
+        <h1 class="display max-w-4xl"><span class="headline-line">Website yang bikin</span><span class="headline-line">bisnis lokal terlihat</span><span class="headline-line">lebih dipercaya.</span></h1>
+        <p class="subhead mt-7 max-w-2xl">Pratala Rerupa membantu cafe, klinik, travel, properti, toko, dan bisnis jasa punya landing page yang rapi, responsif, dan siap diarahkan ke WhatsApp.</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <button class="btn-primary" type="button" data-open-request-modal>Minta Preview Website <span class="material-symbols-outlined text-[19px]">arrow_forward</span></button>
+          <a class="btn-secondary" href="#preview-works">Lihat Contoh Web</a>
+          <a class="btn-secondary" href="https://wa.me/6282246511871?text=Halo%20Adit%2C%20saya%20ingin%20diskusi%20tentang%20pembuatan%20website%20untuk%20bisnis%20saya." data-whatsapp-chat>Chat Adit di WhatsApp</a>
+        </div>
+        <div class="hero-proof mt-10">
+          <div class="proof-chip">
+            <p class="label">Fokus</p>
+            <p class="mt-2 font-semibold">Kesan pertama yang mahal dan jelas.</p>
+          </div>
+          <div class="proof-chip">
+            <p class="label">Alur</p>
+            <p class="mt-2 font-semibold">Informasi bisnis disusun jadi pengalaman.</p>
+          </div>
+          <div class="proof-chip">
+            <p class="label">CTA</p>
+            <p class="mt-2 font-semibold">Pengunjung diarahkan untuk chat atau booking.</p>
+          </div>
+        </div>
+      </div>
+      <div class="demo-device" data-transform-demo aria-label="Demo perubahan informasi bisnis menjadi website">
+        <div class="demo-stage">
+          <div class="messy-board" aria-hidden="true">
+            <p class="label mb-4">Sebelum dirapikan</p>
+            <div class="note">
+              <p class="font-semibold">Instagram aktif, tapi info penting tercecer.</p>
+              <p class="mt-2 text-sm text-text-muted">Jam buka, menu, lokasi, dan cara pesan harus dicari satu per satu.</p>
+            </div>
+            <div class="note">
+              <p class="font-semibold">Calon pelanggan belum yakin.</p>
+              <p class="mt-2 text-sm text-text-muted">Bisnis terlihat hidup, tapi belum terasa profesional.</p>
+            </div>
+            <div class="note">
+              <p class="font-semibold">WhatsApp jadi tujuan, tapi jalannya belum jelas.</p>
+              <p class="mt-2 text-sm text-text-muted">Tidak ada alur yang membuat orang cepat mengambil keputusan.</p>
+            </div>
+          </div>
+          <div class="clean-page" aria-hidden="true">
+            <div class="clean-hero">
+              <div>
+                <p class="label text-white/70">Landing page siap jual</p>
+                <h2 class="mt-5 text-4xl font-bold leading-none">Bisnis terlihat rapi sejak layar pertama.</h2>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="rounded-md bg-art-lime px-4 py-2 text-sm font-bold text-primary">Chat WhatsApp</span>
+                <span class="text-sm text-white/70">Menu - Lokasi - Testimoni</span>
+              </div>
+            </div>
+            <div class="clean-section">
+              <div class="clean-card"><p class="label">Struktur</p><p class="mt-3 font-semibold">Hero, layanan, bukti, FAQ.</p></div>
+              <div class="clean-card"><p class="label">Visual</p><p class="mt-3 font-semibold">Premium, responsif, mudah dibaca.</p></div>
+              <div class="clean-card"><p class="label">Aksi</p><p class="mt-3 font-semibold">CTA jelas ke WhatsApp.</p></div>
+            </div>
+          </div>
+          <div class="transform-progress" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="preview-works">
+    <div class="mb-12 grid gap-6 md:grid-cols-[0.9fr_1fr] md:items-end">
+      <div>
+        <p class="label">Bukti visual</p>
+        <h2 class="headline mt-3">Preview yang bisa langsung menjual kualitas.</h2>
+      </div>
+      <p class="subhead">Bagian ini dibuat besar karena calon klien tidak perlu janji panjang. Mereka perlu melihat apakah Adit bisa membuat bisnis terasa lebih mahal, jelas, dan bisa dipercaya.</p>
+    </div>
+    <div class="grid gap-7 lg:grid-cols-3">
+      <article class="preview-card reveal">
+        <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="label ml-auto">Hospitality</span></div>
+        <div class="preview-frame"><img src="./assets/preview/dramgakopiweb.jpg" alt="Preview website Dramaga Kopi" loading="lazy"/></div>
+        <div class="p-6">
+          <p class="label">Independent preview</p>
+          <h3 class="mt-3 text-2xl font-bold">Dramaga Kopi</h3>
+          <p class="mt-3 text-text-muted">Arah gelap dan editorial untuk membuat cafe terasa punya karakter, bukan sekadar feed Instagram.</p>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <a class="btn-secondary" href="./assets/preview/dramgakopiweb.jpg" target="_blank" rel="noopener">Lihat Preview</a>
+            <button class="btn-primary" type="button" data-open-request-modal data-concept="Cafe &amp; Eatery" data-business-type="Cafe &amp; Eatery">Minta Website Serupa</button>
+          </div>
+        </div>
+      </article>
+      <article class="preview-card reveal">
+        <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="label ml-auto">Cafe</span></div>
+        <div class="preview-frame"><img src="./assets/preview/cassavaliweb.jpeg" alt="Preview website Cassavali Coffee and Eatery" loading="lazy"/></div>
+        <div class="p-6">
+          <p class="label">Atmospheric preview</p>
+          <h3 class="mt-3 text-2xl font-bold">Cassavali Coffee &amp; Eatery</h3>
+          <p class="mt-3 text-text-muted">Tampilan hospitality yang lebih tenang, cocok untuk bisnis yang ingin terasa hangat dan berkelas.</p>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <a class="btn-secondary" href="./assets/preview/cassavaliweb.jpeg" target="_blank" rel="noopener">Lihat Preview</a>
+            <button class="btn-primary" type="button" data-open-request-modal data-concept="Cafe &amp; Eatery" data-business-type="Cafe &amp; Eatery">Minta Website Serupa</button>
+          </div>
+        </div>
+      </article>
+      <article class="preview-card reveal">
+        <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="label ml-auto">Local business</span></div>
+        <div class="preview-frame"><img src="./assets/preview/bentokopiweb.jpg" alt="Preview website Bento Kopi" loading="lazy"/></div>
+        <div class="p-6">
+          <p class="label">Conversion sample</p>
+          <h3 class="mt-3 text-2xl font-bold">Bento Kopi</h3>
+          <p class="mt-3 text-text-muted">Struktur yang menonjolkan lokasi, suasana, dan alasan orang perlu datang atau menghubungi.</p>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <a class="btn-secondary" href="./assets/preview/bentokopiweb.jpg" target="_blank" rel="noopener">Lihat Preview</a>
+            <button class="btn-primary" type="button" data-open-request-modal data-concept="Cafe &amp; Eatery" data-business-type="Cafe &amp; Eatery">Minta Website Serupa</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="mt-6 max-w-3xl text-sm leading-6 text-text-muted">Preview yang ditampilkan adalah contoh desain independen, bukan website resmi kecuali dinyatakan sebaliknya.</p>
+  </section>
+
+  <section class="split-band section-focus reveal" id="problem">
+    <div class="page-shell section-space grid gap-10 lg:grid-cols-[0.82fr_1fr] lg:items-center">
+      <div>
+        <p class="label">Masalah yang sering terjadi</p>
+        <h2 class="headline mt-3">Bisnisnya bagus, tapi tampilan online-nya belum ikut meyakinkan.</h2>
+      </div>
+      <div class="grid gap-4">
+        <div class="concept-card"><h3 class="text-xl font-bold">Info terlalu tersebar</h3><p class="mt-2 text-text-muted">Menu ada di story, harga ada di chat, lokasi ada di bio, testimoni hilang di feed lama.</p></div>
+        <div class="concept-card"><h3 class="text-xl font-bold">Kepercayaan belum terbentuk</h3><p class="mt-2 text-text-muted">Calon pelanggan ragu karena tidak melihat halaman yang rapi dan mudah dipahami.</p></div>
+        <div class="concept-card"><h3 class="text-xl font-bold">WhatsApp belum didukung alur</h3><p class="mt-2 text-text-muted">Tombol chat penting, tapi harus didahului informasi yang membuat orang yakin untuk bertanya.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="transformasi">
+    <div class="mb-10 grid gap-6 md:grid-cols-[0.86fr_1fr] md:items-end">
+      <div>
+        <p class="label">Signature Rerupa</p>
+        <h2 class="headline mt-3">Dari informasi yang tercecer, jadi website yang rapi dan dipercaya.</h2>
+      </div>
+      <p class="subhead">Geser atau pilih tahapnya. Interaksi ini menunjukkan pekerjaan utama Pratala Rerupa: bukan hanya menggambar tampilan, tapi merapikan persepsi.</p>
+    </div>
+    <div class="transform-shell relative grid gap-0 lg:grid-cols-[0.48fr_0.52fr]" data-transform-demo>
+      <div class="border-b border-border-soft p-6 lg:border-b-0 lg:border-r">
+        <div class="grid gap-3" id="transform-controls">
+          <button class="stage-button rounded-lg border border-border-soft bg-surface-white px-4 py-4 text-left font-bold" type="button" data-stage="0" aria-pressed="false">1. Informasi bisnis masih tercecer</button>
+          <button class="stage-button rounded-lg border border-border-soft bg-surface-white px-4 py-4 text-left font-bold" type="button" data-stage="0.5" aria-pressed="false">2. Struktur mulai disusun</button>
+          <button class="stage-button rounded-lg border border-border-soft bg-surface-white px-4 py-4 text-left font-bold" type="button" data-stage="1" aria-pressed="true">3. Website siap jadi wajah bisnis</button>
+        </div>
+        <div class="mt-6">
+          <label class="label" for="rerupa-range">Atur perubahan</label>
+          <input class="mt-3 w-full accent-primary" id="rerupa-range" type="range" min="0" max="100" value="100"/>
+        </div>
+      </div>
+      <div class="demo-stage min-h-[500px]">
+        <div class="messy-board">
+          <p class="label mb-4">Chat, feed, catatan</p>
+          <div class="note"><p class="font-semibold">"Ada promo? menu terbaru? alamat lengkap?"</p><p class="mt-2 text-sm text-text-muted">Semua dijawab manual berulang-ulang.</p></div>
+          <div class="note"><p class="font-semibold">Foto bagus, tapi belum ada cerita.</p><p class="mt-2 text-sm text-text-muted">Brand belum punya halaman yang bisa dibagikan dengan percaya diri.</p></div>
+          <div class="note"><p class="font-semibold">Calon pelanggan butuh kepastian.</p><p class="mt-2 text-sm text-text-muted">Jam buka, layanan, bukti, lokasi, dan CTA harus muncul dalam urutan yang benar.</p></div>
+        </div>
+        <div class="clean-page">
+          <div class="clean-hero">
+            <div>
+              <p class="label text-white/70">Hasil Rerupa</p>
+              <h3 class="mt-4 text-4xl font-bold leading-none">Halaman yang menjelaskan bisnis sebelum pelanggan bertanya.</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded bg-white/12 px-3 py-2 text-sm">Keunggulan</span>
+              <span class="rounded bg-white/12 px-3 py-2 text-sm">Layanan</span>
+              <span class="rounded bg-art-lime px-3 py-2 text-sm font-bold text-primary">Chat WhatsApp</span>
+            </div>
+          </div>
+          <div class="clean-section">
+            <div class="clean-card"><p class="label">Trust</p><p class="mt-3 font-semibold">Bukti dan testimoni dibuat mudah dilihat.</p></div>
+            <div class="clean-card"><p class="label">Clarity</p><p class="mt-3 font-semibold">Informasi penting tidak lagi tercecer.</p></div>
+            <div class="clean-card"><p class="label">Conversion</p><p class="mt-3 font-semibold">CTA diletakkan saat minat sudah terbentuk.</p></div>
+          </div>
+        </div>
+        <div class="transform-progress" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="workshop">
+    <div class="mb-10 grid gap-6 md:grid-cols-[0.86fr_1fr] md:items-end">
+      <div>
+        <p class="label">Workshop praktis</p>
+        <h2 class="headline mt-3">Pilih jenis bisnis, lihat struktur website yang paling masuk akal.</h2>
+      </div>
+      <p class="subhead">Setiap kategori punya tujuan berbeda. Cafe perlu membuat orang ingin datang, klinik perlu menenangkan, properti perlu membuat orang membayangkan tempatnya.</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-[280px_1fr]">
+      <div class="flex gap-3 overflow-x-auto pb-2 md:flex-col md:overflow-visible" id="workshop-tabs" role="tablist" aria-label="Jenis bisnis">
+        <button class="workshop-tab active shrink-0 md:w-full" data-workshop="cafe" type="button">Cafe &amp; Eatery</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="clinic" type="button">Clinic &amp; Healthcare</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="property" type="button">Property &amp; Residence</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="travel" type="button">Travel &amp; Tour</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="automotive" type="button">Automotive</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="education" type="button">Education</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="beauty" type="button">Beauty &amp; Wellness</button>
+        <button class="workshop-tab shrink-0 md:w-full" data-workshop="business" type="button">Business Profile</button>
+      </div>
+      <article class="workshop-panel rounded-2xl border border-border-soft bg-surface-white p-6 shadow-lg md:p-9" id="workshop-panel">
+        <div class="grid gap-8 lg:grid-cols-[1fr_320px]">
+          <div>
+            <p class="label" id="workshop-goal">Goal: membuat orang ingin datang atau pesan.</p>
+            <h3 class="mt-3 text-3xl font-bold" id="workshop-title">Cafe &amp; Eatery</h3>
+            <p class="subhead mt-4" id="workshop-atmosphere">Hangat, editorial, dan menggugah selera tanpa terlihat ramai.</p>
+            <div class="mt-8 grid gap-6 md:grid-cols-2">
+              <div>
+                <p class="label mb-3">Section yang dibutuhkan</p>
+                <ul class="grid gap-3" id="workshop-structure"></ul>
+              </div>
+              <div>
+                <p class="label mb-3">Arah visual & CTA</p>
+                <p class="text-text-muted" id="workshop-positioning">Foto ambience, menu unggulan, lokasi, review, dan tombol Chat WhatsApp / Direction.</p>
+                <p class="mt-5 font-bold" id="workshop-action">CTA: Chat WhatsApp / Direction</p>
+              </div>
+            </div>
+            <button class="btn-primary mt-8" type="button" data-open-request-modal data-workshop-request>Minta Direction Ini</button>
+          </div>
+          <div class="mini-wireframe" id="workshop-wireframe" aria-label="Preview struktur website"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="process">
+    <div class="mb-12 max-w-3xl">
+      <p class="label">Sistem kerja</p>
+      <h2 class="headline mt-3">Prosesnya dibuat jelas, supaya hasilnya tidak terasa seperti tebak-tebakan.</h2>
+    </div>
+    <div class="process-steps grid gap-4 md:grid-cols-5" id="process-steps">
+      <div class="concept-card"><p class="label">01</p><h3 class="mt-3 text-xl font-bold">Riset bisnis</h3><p class="mt-2 text-sm text-text-muted">Adit membaca jenis bisnis, audiens, layanan, dan hambatan calon pelanggan.</p></div>
+      <div class="concept-card"><p class="label">02</p><h3 class="mt-3 text-xl font-bold">Susun struktur</h3><p class="mt-2 text-sm text-text-muted">Informasi penting diurutkan agar mudah dipahami.</p></div>
+      <div class="concept-card"><p class="label">03</p><h3 class="mt-3 text-xl font-bold">Buat preview visual</h3><p class="mt-2 text-sm text-text-muted">Arah visual dibuat dulu agar pemilik bisnis bisa menilai sebelum lanjut.</p></div>
+      <div class="concept-card"><p class="label">04</p><h3 class="mt-3 text-xl font-bold">Revisi dan rapikan</h3><p class="mt-2 text-sm text-text-muted">Copy, layout, CTA, dan responsive view dipoles.</p></div>
+      <div class="concept-card"><p class="label">05</p><h3 class="mt-3 text-xl font-bold">Siap dipakai</h3><p class="mt-2 text-sm text-text-muted">Website siap dibagikan ke calon pelanggan dan diarahkan ke WhatsApp.</p></div>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="library">
+    <div class="mb-10 grid gap-6 md:grid-cols-[0.82fr_1fr] md:items-end">
+      <div>
+        <p class="label">Concept library</p>
+        <h2 class="headline mt-3">Kategori bisnis yang bisa langsung diarahkan.</h2>
+      </div>
+      <p class="subhead">Library ini dibuat lebih tenang dari showcase utama. Fungsinya membantu kamu memilih arah, lalu membuka request yang sudah terisi otomatis.</p>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4" id="concept-grid">
+      <div class="concept-card"><p class="label">Hospitality</p><h3 class="mt-3 text-xl font-bold">Cafe &amp; Eatery Concept</h3><p class="mt-3 text-sm text-text-muted">Ambience, menu unggulan, review, lokasi, dan CTA pesan.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Cafe &amp; Eatery" data-business-type="Cafe &amp; Eatery">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Cafe &amp; Eatery" data-business-type="Cafe &amp; Eatery">Minta Preview Serupa</button></div>
+      <div class="concept-card"><p class="label">Health</p><h3 class="mt-3 text-xl font-bold">Clinic &amp; Healthcare Concept</h3><p class="mt-3 text-sm text-text-muted">Kepercayaan, layanan, jadwal dokter, booking, dan FAQ.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Clinic &amp; Healthcare" data-business-type="Clinic &amp; Healthcare">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Clinic &amp; Healthcare" data-business-type="Clinic &amp; Healthcare">Minta Preview Serupa</button></div>
+      <div class="concept-card"><p class="label">Property</p><h3 class="mt-3 text-xl font-bold">Property &amp; Residence Concept</h3><p class="mt-3 text-sm text-text-muted">Hero visual, unit, fasilitas, lokasi, galeri, dan site visit.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Property &amp; Residence" data-business-type="Property &amp; Residence">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Property &amp; Residence" data-business-type="Property &amp; Residence">Minta Preview Serupa</button></div>
+      <div class="concept-card"><p class="label">Travel</p><h3 class="mt-3 text-xl font-bold">Travel &amp; Tour Concept</h3><p class="mt-3 text-sm text-text-muted">Paket, itinerary, jadwal, trust section, dan ketersediaan.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Travel &amp; Tour" data-business-type="Travel &amp; Tour">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Travel &amp; Tour" data-business-type="Travel &amp; Tour">Minta Preview Serupa</button></div>
+      <div class="concept-card hidden-concept"><p class="label">Automotive</p><h3 class="mt-3 text-xl font-bold">Automotive Showroom Concept</h3><p class="mt-3 text-sm text-text-muted">Stok unit, spesifikasi, garansi, trust, dan cek ketersediaan.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Automotive Showroom" data-business-type="Automotive Showroom">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Automotive Showroom" data-business-type="Automotive Showroom">Minta Preview Serupa</button></div>
+      <div class="concept-card hidden-concept"><p class="label">Education</p><h3 class="mt-3 text-xl font-bold">Education &amp; Course Concept</h3><p class="mt-3 text-sm text-text-muted">Program, kurikulum, pengajar, fasilitas, dan pendaftaran.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Education &amp; Course" data-business-type="Education &amp; Course">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Education &amp; Course" data-business-type="Education &amp; Course">Minta Preview Serupa</button></div>
+      <div class="concept-card hidden-concept"><p class="label">Wellness</p><h3 class="mt-3 text-xl font-bold">Beauty &amp; Wellness Concept</h3><p class="mt-3 text-sm text-text-muted">Treatment, benefit, before-after, review, dan booking.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Beauty &amp; Wellness" data-business-type="Beauty &amp; Wellness">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Beauty &amp; Wellness" data-business-type="Beauty &amp; Wellness">Minta Preview Serupa</button></div>
+      <div class="concept-card hidden-concept"><p class="label">Company</p><h3 class="mt-3 text-xl font-bold">Business Profile Concept</h3><p class="mt-3 text-sm text-text-muted">Kredibilitas, layanan, proses, tentang bisnis, dan kontak.</p><button class="btn-primary mt-5 w-full" type="button" data-open-request-modal data-concept="Business Profile" data-business-type="Business Profile">Lihat Arah Concept</button><button class="btn-secondary mt-3 w-full" type="button" data-open-request-modal data-concept="Business Profile" data-business-type="Business Profile">Minta Preview Serupa</button></div>
+    </div>
+    <div class="mt-10 text-center"><button class="btn-secondary" id="show-more-btn" type="button" aria-expanded="false">Tampilkan Semua Kategori</button></div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="about">
+    <div class="grid gap-10 lg:grid-cols-[0.86fr_1fr] lg:items-start">
+      <div>
+        <p class="label">Kenapa Pratala Rerupa</p>
+        <h2 class="headline mt-3">Yang dijual bukan cuma tampilan. Yang dirapikan adalah cara bisnis dipersepsikan.</h2>
+        <p class="subhead mt-6">Adit membantu bisnis yang selama ini mengandalkan Instagram atau WhatsApp agar punya halaman yang lebih meyakinkan saat dibagikan ke calon pelanggan.</p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="concept-card"><h3 class="text-xl font-bold">Struktur informasi</h3><p class="mt-2 text-text-muted">Konten bisnis dipilih, dipadatkan, dan diurutkan agar tidak membingungkan.</p></div>
+        <div class="concept-card"><h3 class="text-xl font-bold">CTA jelas</h3><p class="mt-2 text-text-muted">Tombol WhatsApp muncul sebagai langkah natural setelah pengunjung paham.</p></div>
+        <div class="concept-card"><h3 class="text-xl font-bold">Responsif di HP</h3><p class="mt-2 text-text-muted">Karena banyak calon pelanggan membuka link dari chat, tampilan mobile dibuat serius.</p></div>
+        <div class="concept-card"><h3 class="text-xl font-bold">Preview dulu</h3><p class="mt-2 text-text-muted">Arah visual bisa ditunjukkan sebelum lanjut, jadi keputusan lebih tenang.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="faq">
+    <div class="mb-8 max-w-3xl">
+      <p class="label">FAQ</p>
+      <h2 class="headline mt-3">Pertanyaan yang biasanya muncul sebelum mulai.</h2>
+    </div>
+    <div class="rounded-2xl border border-border-soft bg-surface-white px-5 md:px-8">
+      <div class="faq-item is-open">
+        <button class="flex w-full items-center justify-between gap-4 py-6 text-left text-xl font-bold" type="button" aria-expanded="true">Apakah bisa dibuatkan preview dulu?<span class="material-symbols-outlined">expand_less</span></button>
+        <div class="faq-answer"><div><p class="pb-6 text-text-muted">Bisa. Preview membantu kamu melihat arah struktur dan visual sebelum lanjut ke pengerjaan yang lebih lengkap.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="flex w-full items-center justify-between gap-4 py-6 text-left text-xl font-bold" type="button" aria-expanded="false">Apakah websitenya bisa langsung ke WhatsApp?<span class="material-symbols-outlined">expand_more</span></button>
+        <div class="faq-answer"><div><p class="pb-6 text-text-muted">Bisa. CTA bisa diarahkan ke WhatsApp, booking, direction, atau form sesuai kebutuhan bisnis.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="flex w-full items-center justify-between gap-4 py-6 text-left text-xl font-bold" type="button" aria-expanded="false">Apakah cocok untuk bisnis kecil?<span class="material-symbols-outlined">expand_more</span></button>
+        <div class="faq-answer"><div><p class="pb-6 text-text-muted">Cocok, terutama untuk bisnis yang sudah punya pelanggan atau konten, tapi belum punya halaman profesional untuk dibagikan.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="flex w-full items-center justify-between gap-4 py-6 text-left text-xl font-bold" type="button" aria-expanded="false">Apakah bisa pakai domain sendiri?<span class="material-symbols-outlined">expand_more</span></button>
+        <div class="faq-answer"><div><p class="pb-6 text-text-muted">Bisa. Domain dan kebutuhan teknis bisa dibahas setelah arah website jelas.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="flex w-full items-center justify-between gap-4 py-6 text-left text-xl font-bold" type="button" aria-expanded="false">Apakah bisa disesuaikan dengan warna brand?<span class="material-symbols-outlined">expand_more</span></button>
+        <div class="faq-answer"><div><p class="pb-6 text-text-muted">Bisa. Warna, gaya foto, dan karakter visual akan disesuaikan selama tetap mendukung kejelasan dan kepercayaan.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="flex w-full items-center justify-between gap-4 py-6 text-left text-xl font-bold" type="button" aria-expanded="false">Apakah bisa untuk cafe, klinik, travel, properti, atau toko?<span class="material-symbols-outlined">expand_more</span></button>
+        <div class="faq-answer"><div><p class="pb-6 text-text-muted">Bisa. Setiap jenis bisnis akan dibuatkan struktur yang berbeda, bukan satu template yang dipakai ulang mentah-mentah.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-shell section-space section-focus reveal" id="contact">
+    <div class="overflow-hidden rounded-[28px] bg-primary p-8 text-white shadow-2xl md:p-14 lg:p-20">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_0.7fr] lg:items-end">
+        <div>
+          <p class="label text-white/58">Mulai dari preview</p>
+          <h2 class="headline mt-3 max-w-4xl">Kalau bisnis kamu sudah bagus, websitenya harus ikut terlihat serius.</h2>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-white/70">Kirim jenis bisnis, kebutuhan, dan arah yang kamu suka. Adit akan bantu susun website yang terlihat rapi, dipercaya, dan mudah diarahkan ke WhatsApp.</p>
+        </div>
+        <div class="grid gap-3">
+          <button class="btn-dark w-full" type="button" data-open-request-modal>Minta Preview Website</button>
+          <a class="btn-light w-full" href="https://wa.me/6282246511871?text=Halo%20Adit%2C%20saya%20ingin%20diskusi%20tentang%20pembuatan%20website%20untuk%20bisnis%20saya." data-whatsapp-chat>Chat Adit di WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="page-shell flex flex-col gap-8 border-t border-border-soft py-12 md:flex-row md:items-center md:justify-between">
+  <div>
+    <p class="text-2xl font-bold">Pratala Rerupa</p>
+    <p class="mt-2 max-w-md text-sm leading-6 text-text-muted">Website premium untuk bisnis lokal yang ingin terlihat lebih dipercaya.</p>
+    <p class="label mt-4">&copy; 2026 Pratala Rerupa. Built by Adit.</p>
+  </div>
+  <div class="flex flex-wrap gap-5 text-sm font-semibold">
+    <a class="text-text-muted hover:text-primary" href="#preview-works">Preview</a>
+    <a class="text-text-muted hover:text-primary" href="#workshop">Workshop</a>
+    <a class="text-text-muted hover:text-primary" href="#library">Library</a>
+    <a class="text-text-muted hover:text-primary" href="#about">About</a>
+    <a class="text-text-muted hover:text-primary" href="#contact">Contact</a>
+    <a class="text-text-muted hover:text-primary" href="./admin.html">Admin Login</a>
+  </div>
+</footer>
+
+<div class="fixed inset-0 z-[100] hidden items-center justify-center px-5 py-8" id="request-modal" role="dialog" aria-modal="true" aria-labelledby="request-modal-title">
+  <div class="absolute inset-0 bg-primary/45 backdrop-blur-sm" data-request-close></div>
+  <div class="relative z-10 max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-border-soft bg-surface-white shadow-2xl">
+    <div class="sticky top-0 z-10 flex items-start justify-between gap-5 border-b border-border-soft bg-surface-white/95 p-6 backdrop-blur">
+      <div>
+        <p class="label">Pratala Rerupa</p>
+        <h2 class="mt-2 text-2xl font-bold text-primary" id="request-modal-title">Minta Preview Website</h2>
+        <p class="mt-2 text-text-muted">Ceritakan bisnis kamu. Adit akan bantu arahkan struktur dan visual website yang paling cocok.</p>
+      </div>
+      <button class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border-soft text-primary hover:bg-paper" type="button" id="request-modal-close" aria-label="Tutup form request" data-request-close>
+        <span class="material-symbols-outlined text-[22px]">close</span>
+      </button>
+    </div>
+    <form class="space-y-5 p-6" id="request-form" novalidate>
+      <div class="space-y-5" id="request-form-fields">
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <label class="block"><span class="label">Nama</span><input class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="full_name" required autocomplete="name"/><span class="request-error mt-1 hidden text-sm text-error" data-error-for="full_name"></span></label>
+          <label class="block"><span class="label">Nama Bisnis</span><input class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="business_name" required/><span class="request-error mt-1 hidden text-sm text-error" data-error-for="business_name"></span></label>
+          <label class="block"><span class="label">Jenis Bisnis</span><select class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="business_type" required><option value="">Pilih jenis bisnis</option><option value="Cafe &amp; Eatery">Cafe &amp; Eatery</option><option value="Clinic &amp; Healthcare">Clinic &amp; Healthcare</option><option value="Property &amp; Residence">Property &amp; Residence</option><option value="Travel &amp; Tour">Travel &amp; Tour</option><option value="Automotive Showroom">Automotive Showroom</option><option value="Education &amp; Course">Education &amp; Course</option><option value="Beauty &amp; Wellness">Beauty &amp; Wellness</option><option value="Business Profile">Business Profile</option><option value="Other">Other</option></select><span class="request-error mt-1 hidden text-sm text-error" data-error-for="business_type"></span></label>
+          <label class="block"><span class="label">Nomor WhatsApp</span><input class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="whatsapp" required inputmode="tel" placeholder="082246511871"/><span class="request-error mt-1 hidden text-sm text-error" data-error-for="whatsapp"></span></label>
+          <label class="block"><span class="label">Email</span><input class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="email" type="email" autocomplete="email"/><span class="request-error mt-1 hidden text-sm text-error" data-error-for="email"></span></label>
+          <label class="block"><span class="label">Lokasi Bisnis</span><input class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="location"/><span class="request-error mt-1 hidden text-sm text-error" data-error-for="location"></span></label>
+        </div>
+        <label class="block"><span class="label">Konsep yang Dipilih</span><input class="mt-2 w-full rounded-lg border-border-soft bg-surface-white" name="preferred_concept" readonly/><span class="request-error mt-1 hidden text-sm text-error" data-error-for="preferred_concept"></span></label>
+        <label class="block"><span class="label">Pesan / Kebutuhan Website</span><textarea class="mt-2 min-h-[130px] w-full rounded-lg border-border-soft bg-surface-white" name="message" required placeholder="Halo Adit, saya ingin dibuatkan preview website untuk bisnis saya. Saya ingin tampil lebih profesional, jelas, dan mudah diarahkan ke WhatsApp."></textarea><span class="request-error mt-1 hidden text-sm text-error" data-error-for="message"></span></label>
+        <div class="hidden rounded-lg border border-error/20 bg-error-container p-4 text-sm text-error" id="request-form-alert"></div>
+      </div>
+      <div class="hidden rounded-2xl border border-art-lime/30 bg-surface-white p-7 text-center shadow-sm" id="request-success">
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-art-lime/30 bg-art-lime/10 text-primary"><span class="material-symbols-outlined text-[24px]">check</span></div>
+        <p class="label mt-5">Pratala Rerupa</p>
+        <h3 class="mt-3 text-2xl font-bold text-primary">Terima kasih, request kamu sudah terkirim.</h3>
+        <p class="mx-auto mt-3 max-w-xl text-text-muted">Adit akan menghubungi kamu lewat WhatsApp untuk menanyakan detail bisnis dan arah website yang paling cocok.</p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <a class="btn-primary" id="request-whatsapp-success" href="https://wa.me/6282246511871?text=Halo%20Adit%2C%20saya%20sudah%20mengirim%20request%20website%20concept%20di%20Pratala%20Rerupa.%20Saya%20ingin%20lanjut%20diskusi%20tentang%20kebutuhan%20website%20bisnis%20saya." target="_blank" rel="noopener" data-skip-cta>Chat Adit di WhatsApp <span class="material-symbols-outlined text-[18px]">open_in_new</span></a>
+          <button class="btn-secondary" id="request-home-success" type="button">Kembali ke Beranda</button>
+        </div>
+      </div>
+      <div class="flex flex-col-reverse gap-3 border-t border-border-soft pt-5 sm:flex-row sm:justify-end" id="request-form-actions">
+        <button class="btn-secondary" type="button" data-request-close>Cancel</button>
+        <button class="btn-primary disabled:cursor-not-allowed disabled:opacity-60" id="request-submit" type="submit">Submit Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const root = document.documentElement;
+  const header = document.getElementById("site-header");
+  const desktopNav = document.getElementById("desktop-nav");
+  const navIndicator = desktopNav?.querySelector(".site-nav-indicator");
+  const navLinks = [...document.querySelectorAll("[data-nav-link]")];
+  const menuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-menu-link");
+  const transformRange = document.getElementById("rerupa-range");
+  const stageButtons = document.querySelectorAll(".stage-button");
+  const heroDevice = document.querySelector("#home .demo-device");
+  const processTrack = document.getElementById("process-steps");
+  const processCards = [...document.querySelectorAll("#process .concept-card")];
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  const workshopData = {
+    cafe: {
+      title: "Cafe & Eatery",
+      goal: "Goal: membuat orang ingin datang atau pesan.",
+      atmosphere: "Hangat, editorial, dan menggugah selera tanpa terlihat ramai.",
+      structure: ["Ambience hero", "Menu unggulan", "Review pelanggan", "Lokasi dan jam buka", "CTA Chat WhatsApp / Direction"],
+      action: "CTA: Chat WhatsApp / Direction",
+      positioning: "Foto ambience, menu unggulan, lokasi, review, dan tombol Chat WhatsApp / Direction.",
+      accent: "#c4432f"
+    },
+    clinic: {
+      title: "Clinic & Healthcare",
+      goal: "Goal: membuat pasien merasa aman untuk booking.",
+      atmosphere: "Bersih, tenang, kredibel, dan tidak menakutkan.",
+      structure: ["Trust-first hero", "Layanan klinik", "Jadwal dokter", "FAQ pasien", "CTA Booking"],
+      action: "CTA: Booking / Tanya Jadwal",
+      positioning: "Visual clean, informasi ringkas, dan bukti kepercayaan yang mudah ditemukan.",
+      accent: "#1746a2"
+    },
+    property: {
+      title: "Property & Residence",
+      goal: "Goal: membuat orang membayangkan tinggal atau investasi.",
+      atmosphere: "Lapang, aspiratif, premium, tapi tetap informatif.",
+      structure: ["Hero eksterior", "Tipe unit", "Fasilitas", "Lokasi strategis", "CTA Site Visit"],
+      action: "CTA: Site Visit / Download Brochure",
+      positioning: "Gambar besar, detail unit jelas, dan alur menuju survei lokasi.",
+      accent: "#7eb954"
+    },
+    travel: {
+      title: "Travel & Tour",
+      goal: "Goal: membuat paket mudah dibandingkan dan ditanyakan.",
+      atmosphere: "Jelas, meyakinkan, dan cukup emosional untuk membuat orang ingin berangkat.",
+      structure: ["Paket unggulan", "Itinerary", "Jadwal keberangkatan", "Trust section", "CTA Cek Ketersediaan"],
+      action: "CTA: Cek Ketersediaan",
+      positioning: "Paket disusun agar orang cepat paham harga, jadwal, dan nilai perjalanan.",
+      accent: "#0ea5e9"
+    },
+    automotive: {
+      title: "Automotive Showroom",
+      goal: "Goal: mempercepat orang bertanya stok unit.",
+      atmosphere: "Tegas, transparan, dan praktis.",
+      structure: ["Unit highlight", "Spesifikasi", "Garansi", "Review", "CTA Cek Unit"],
+      action: "CTA: Cek Unit",
+      positioning: "Informasi kendaraan dibuat rapi agar calon pembeli tidak ragu menghubungi.",
+      accent: "#111111"
+    },
+    education: {
+      title: "Education & Course",
+      goal: "Goal: membuat program belajar mudah dipahami.",
+      atmosphere: "Terstruktur, ramah, dan kredibel.",
+      structure: ["Program overview", "Kurikulum", "Pengajar", "Fasilitas", "CTA Daftar"],
+      action: "CTA: Daftar / Tanya Program",
+      positioning: "Program dan benefit dibuat jelas untuk orang tua, siswa, atau peserta kursus.",
+      accent: "#5e27e6"
+    },
+    beauty: {
+      title: "Beauty & Wellness",
+      goal: "Goal: membuat orang nyaman untuk booking treatment.",
+      atmosphere: "Elegan, soft, bersih, dan personal.",
+      structure: ["Treatment hero", "Benefit", "Before-after", "Review", "CTA Booking"],
+      action: "CTA: Booking Treatment",
+      positioning: "Tampilan dibuat halus, tapi tetap jelas menjelaskan hasil dan kepercayaan.",
+      accent: "#d671a3"
+    },
+    business: {
+      title: "Business Profile",
+      goal: "Goal: membuat perusahaan terlihat mapan dan mudah dihubungi.",
+      atmosphere: "Tenang, profesional, dan tepercaya.",
+      structure: ["Credibility hero", "Layanan", "Proses", "Tentang bisnis", "CTA Konsultasi"],
+      action: "CTA: Konsultasi",
+      positioning: "Profil bisnis dibuat lebih rapi agar calon klien cepat memahami layanan.",
+      accent: "#625f59"
+    }
+  };
+
+  const updateClock = () => {
+    const formatted = new Intl.DateTimeFormat("id-ID", {
+      timeZone: "Asia/Jakarta",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    }).format(new Date());
+    document.querySelectorAll("[data-studio-clock]").forEach((clock) => {
+      clock.textContent = `${formatted} WIB`;
+    });
+  };
+
+  const moveNavIndicator = (link) => {
+    if (!desktopNav || !navIndicator || !link || !desktopNav.contains(link)) return;
+    const navRect = desktopNav.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    desktopNav.style.setProperty("--nav-indicator-left", `${linkRect.left - navRect.left}px`);
+    desktopNav.style.setProperty("--nav-indicator-top", `${linkRect.top - navRect.top}px`);
+    desktopNav.style.setProperty("--nav-indicator-width", `${linkRect.width}px`);
+    desktopNav.style.setProperty("--nav-indicator-height", `${linkRect.height}px`);
+    desktopNav.style.setProperty("--nav-indicator-opacity", "1");
+  };
+
+  const setActiveNav = (id) => {
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === `#${id}`;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "true");
+        moveNavIndicator(link);
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const setProgress = (progress) => {
+    const value = Math.max(0, Math.min(1, Number(progress)));
+    root.style.setProperty("--rerupa-progress", value.toFixed(2));
+    if (transformRange) transformRange.value = String(Math.round(value * 100));
+    stageButtons.forEach((button) => {
+      const stage = Number(button.dataset.stage || 0);
+      const active = Math.abs(stage - value) < 0.16 || (value > 0.84 && stage === 1);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  };
+
+  const renderWorkshop = (key) => {
+    const item = workshopData[key] || workshopData.cafe;
+    const panel = document.getElementById("workshop-panel");
+    panel?.classList.add("is-switching");
+    panel?.classList.remove("panel-in");
+    window.setTimeout(() => {
+      document.getElementById("workshop-title").textContent = item.title;
+      document.getElementById("workshop-goal").textContent = item.goal;
+      document.getElementById("workshop-atmosphere").textContent = item.atmosphere;
+      document.getElementById("workshop-positioning").textContent = item.positioning;
+      document.getElementById("workshop-action").textContent = item.action;
+      document.getElementById("workshop-structure").innerHTML = item.structure.map((entry, index) => `
+        <li class="workshop-bullet flex items-start gap-3 text-primary" style="animation-delay:${index * 48}ms">
+          <span class="mt-2 h-2 w-2 shrink-0 rounded-full" style="background:${item.accent}"></span>
+          <span>${entry}</span>
+        </li>
+      `).join("");
+      document.getElementById("workshop-wireframe").innerHTML = `
+        <p class="label">Preview struktur</p>
+        <div class="mt-5 rounded-xl border border-border-soft bg-surface-white p-4">
+          <div class="h-16 rounded-lg" style="background:linear-gradient(135deg, ${item.accent}, #111111); animation: wireHero .42s var(--motion-ease) both"></div>
+          <div class="mt-4 grid grid-cols-3 gap-2">
+            <span class="h-14 rounded-md bg-paper-soft" style="animation: wireBlock .36s var(--motion-ease) both 80ms"></span>
+            <span class="h-14 rounded-md bg-paper-soft" style="animation: wireBlock .36s var(--motion-ease) both 140ms"></span>
+            <span class="h-14 rounded-md bg-paper-soft" style="animation: wireBlock .36s var(--motion-ease) both 200ms"></span>
+          </div>
+          <div class="mt-4 h-10 rounded-md border border-border-soft bg-paper" style="animation: wireBlock .36s var(--motion-ease) both 260ms"></div>
+        </div>
+        <p class="mt-5 text-sm font-bold">${item.action}</p>
+      `;
+      panel?.classList.remove("is-switching");
+      panel?.classList.add("panel-in");
+      window.setTimeout(() => panel?.classList.remove("panel-in"), 520);
+    }, 120);
+  };
+
+  document.querySelectorAll(".workshop-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".workshop-tab").forEach((item) => item.classList.remove("active"));
+      tab.classList.add("active");
+      renderWorkshop(tab.dataset.workshop);
+    });
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const hash = link.getAttribute("href");
+      const target = hash?.startsWith("#") ? document.querySelector(hash) : null;
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      setActiveNav(hash.slice(1));
+      mobileMenu?.classList.remove("open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+      const icon = menuToggle?.querySelector(".material-symbols-outlined");
+      if (icon) icon.textContent = "menu";
+    });
+  });
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.querySelector(".material-symbols-outlined").textContent = isOpen ? "close" : "menu";
+  });
+  mobileLinks.forEach((link) => link.addEventListener("click", () => mobileMenu?.classList.remove("open")));
+
+  transformRange?.addEventListener("input", (event) => setProgress(Number(event.target.value) / 100));
+  stageButtons.forEach((button) => button.addEventListener("click", () => setProgress(Number(button.dataset.stage))));
+
+  document.querySelectorAll(".faq-item > button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".faq-item");
+      const isOpen = item.classList.toggle("is-open");
+      button.setAttribute("aria-expanded", String(isOpen));
+      button.querySelector(".material-symbols-outlined").textContent = isOpen ? "expand_less" : "expand_more";
+    });
+  });
+
+  document.getElementById("show-more-btn")?.addEventListener("click", function () {
+    const isExpanded = this.getAttribute("aria-expanded") === "true";
+    const cards = [...document.querySelectorAll(".hidden-concept")];
+    if (isExpanded) {
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 36}ms`;
+        card.classList.add("hiding");
+        window.setTimeout(() => {
+          card.classList.remove("visible", "hiding");
+          card.style.animationDelay = "";
+        }, 320 + index * 36);
+      });
+    } else {
+      cards.forEach((card, index) => {
+        card.classList.remove("hiding");
+        card.style.animationDelay = `${index * 72}ms`;
+        card.classList.add("visible");
+      });
+    }
+    this.setAttribute("aria-expanded", String(!isExpanded));
+    this.textContent = isExpanded ? "Tampilkan Semua Kategori" : "Sembunyikan Kategori";
+  });
+
+  const sections = [...document.querySelectorAll("main section[id]")];
+  const revealItems = document.querySelectorAll(".reveal:not(.section-focus)");
+  const sectionVisibility = new Map();
+  const getSectionScore = (section) => {
+    const rect = section.getBoundingClientRect();
+    const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    const ratio = visible / Math.max(1, Math.min(rect.height, window.innerHeight));
+    const center = rect.top + rect.height / 2;
+    const centerPenalty = Math.abs(center - window.innerHeight * .48) / Math.max(1, window.innerHeight);
+    return Math.max(0, ratio - centerPenalty * .22);
+  };
+  const updateSectionFocus = (fallbackId) => {
+    if (!sections.length || reducedMotion) return fallbackId || sections[0]?.id;
+    let activeId = fallbackId || sections[0].id;
+    let bestScore = -1;
+    sections.forEach((section) => {
+      const observerScore = sectionVisibility.get(section.id) || 0;
+      const score = Math.max(observerScore, getSectionScore(section));
+      if (score > bestScore) {
+        bestScore = score;
+        activeId = section.id;
+      }
+    });
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const inSoftRange = rect.top < window.innerHeight * .9 && rect.bottom > window.innerHeight * .1;
+      const observerScore = sectionVisibility.get(section.id) || 0;
+      const isActive = section.id === activeId;
+      const isNear = !isActive && (observerScore > .08 || inSoftRange);
+      section.classList.toggle("section-active", isActive);
+      section.classList.toggle("section-near", isNear);
+      section.classList.toggle("active", isActive || isNear);
+    });
+    return activeId;
+  };
+  if ("IntersectionObserver" in window && !reducedMotion) {
+    sections[0]?.classList.add("section-active", "active");
+    document.body.classList.add("section-reveal-ready");
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        sectionVisibility.set(entry.target.id, entry.intersectionRatio);
+      });
+      updateSectionFocus();
+    }, {
+      threshold: [0, .08, .18, .32, .48, .64, .82, 1],
+      rootMargin: "-10% 0px -16% 0px"
+    });
+    sections.forEach((section) => {
+      sectionVisibility.set(section.id, section.id === sections[0]?.id ? 1 : 0);
+      sectionObserver.observe(section);
+    });
+
+    const itemObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("active", entry.isIntersecting);
+      });
+    }, { threshold: .16, rootMargin: "0px 0px -10% 0px" });
+    revealItems.forEach((item) => itemObserver.observe(item));
+  } else {
+    document.body.classList.remove("section-reveal-ready");
+    document.querySelectorAll(".reveal").forEach((item) => item.classList.add("active"));
+    sections.forEach((section) => section.classList.add("section-active"));
+  }
+
+  let ticking = false;
+  const updateScrollState = () => {
+    const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    root.style.setProperty("--page-progress", Math.min(1, Math.max(0, window.scrollY / scrollable)).toFixed(4));
+    header?.classList.toggle("nav-compact", window.scrollY > 24);
+    let active = sections[0]?.id || "home";
+    const line = window.innerHeight * .35;
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= line && rect.bottom >= line) active = section.id;
+    });
+    const focusedSection = updateSectionFocus(active) || active;
+    setActiveNav(focusedSection);
+
+    const transformSection = document.getElementById("transformasi");
+    if (transformSection && !document.activeElement?.matches("#rerupa-range")) {
+      const rect = transformSection.getBoundingClientRect();
+      const raw = 1 - ((rect.top - window.innerHeight * .18) / (window.innerHeight * .7));
+      if (rect.top < window.innerHeight && rect.bottom > 0) setProgress(raw);
+    }
+    if (processTrack && processCards.length) {
+      const rect = processTrack.getBoundingClientRect();
+      const raw = 1 - ((rect.top - window.innerHeight * .72) / (window.innerHeight * .62));
+      const progress = Math.max(0, Math.min(1, raw));
+      processTrack.style.setProperty("--process-progress", progress.toFixed(3));
+      const activeIndex = Math.min(processCards.length - 1, Math.max(0, Math.round(progress * (processCards.length - 1))));
+      processCards.forEach((card, index) => card.classList.toggle("is-current", index <= activeIndex));
+    }
+    ticking = false;
+  };
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateScrollState);
+  }, { passive: true });
+  window.addEventListener("resize", updateScrollState);
+
+  if (!reducedMotion && finePointer) {
+    document.addEventListener("mousemove", (event) => {
+      if (!heroDevice) return;
+      const rect = heroDevice.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - .5) * 16;
+      const y = ((event.clientY - rect.top) / rect.height - .5) * 12;
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        root.style.setProperty("--hero-x", `${x.toFixed(2)}px`);
+        root.style.setProperty("--hero-y", `${y.toFixed(2)}px`);
+      }
+    }, { passive: true });
+
+    document.querySelectorAll(".preview-card, .concept-card, .btn-primary, .btn-secondary, .btn-dark, .btn-light").forEach((card) => {
+      card.addEventListener("mousemove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const relX = event.clientX - rect.left;
+        const relY = event.clientY - rect.top;
+        const x = relX / rect.width - .5;
+        const y = relY / rect.height - .5;
+        card.style.setProperty("--spot-x", `${relX}px`);
+        card.style.setProperty("--spot-y", `${relY}px`);
+        if (card.classList.contains("preview-card")) {
+          card.style.setProperty("--tilt-x", `${(-y * 7).toFixed(2)}deg`);
+          card.style.setProperty("--tilt-y", `${(x * 8).toFixed(2)}deg`);
+        }
+        if (card.matches(".btn-primary, .btn-secondary, .btn-dark, .btn-light")) {
+          card.style.setProperty("--magnet-x", `${(x * 6).toFixed(2)}px`);
+          card.style.setProperty("--magnet-y", `${(y * 5).toFixed(2)}px`);
+        }
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.removeProperty("--tilt-x");
+        card.style.removeProperty("--tilt-y");
+        card.style.removeProperty("--magnet-x");
+        card.style.removeProperty("--magnet-y");
+        card.style.removeProperty("--spot-x");
+        card.style.removeProperty("--spot-y");
+      });
+    });
+  }
+
+  updateClock();
+  window.setInterval(updateClock, 1000);
+  renderWorkshop("cafe");
+  setProgress(1);
+  document.body.classList.add("is-loaded");
+  updateScrollState();
+});
+</script>
+<script src="./assets/js/supabase-config.js?v=2"></script>
+<script src="./assets/js/supabase-client.js?v=3"></script>
+<script src="./assets/js/request-form.js?v=7"></script>
+</body>
+</html>

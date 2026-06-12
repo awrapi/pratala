@@ -1,0 +1,12 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Pratala Rerupa Logo">
+  <!-- P + R monogram: a square with a cutout forming P on left, R stroke on right -->
+  <!-- Outer frame - rounded square -->
+  <rect x="2" y="2" width="36" height="36" rx="10" fill="currentColor"/>
+  <!-- P letterform: vertical bar + bowl -->
+  <rect x="9" y="10" width="3" height="20" rx="1.5" fill="white"/>
+  <path d="M12 10 H18 Q22 10 22 15.5 Q22 21 18 21 H12" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- R letterform: vertical bar + bowl + leg -->
+  <rect x="24" y="10" width="3" height="20" rx="1.5" fill="white"/>
+  <path d="M27 10 H32 Q36 10 36 14.5 Q36 19 32 19 H27" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" transform="translate(-9,0)"/>
+  <line x1="27" y1="19" x2="31" y2="30" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
